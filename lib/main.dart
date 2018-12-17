@@ -4,7 +4,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 void main() {
   runApp(MaterialApp(
     home: Scaffold(
-      appBar: AppBar(title: const Text('Google Maps demo')),
+      appBar: AppBar(title: const Text('flutter-googlemaps-sample')),
       body: MapsDemo(),
     ),
   ));
@@ -21,14 +21,14 @@ class MapsDemoState extends State<MapsDemo> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(15.0),
+      padding: EdgeInsets.all(0),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           Center(
             child: SizedBox(
-              width: 320.0,
-              height: 480.0,
+              width: double.infinity,
+              height: 640,
               child: GoogleMap(
                 onMapCreated: _onMapCreated,
               ),
@@ -41,12 +41,16 @@ class MapsDemoState extends State<MapsDemo> {
                 : () {
                     mapController.animateCamera(CameraUpdate.newCameraPosition(
                       const CameraPosition(
-                        bearing: 270.0,
-                        target: LatLng(51.5160895, -0.1294527),
-                        tilt: 30.0,
-                        zoom: 17.0,
+                        bearing: 270.0, // 方角
+                        target: LatLng(51.5160895, -0.1294527), // 位置情報
+                        tilt: 3.0, // カメラの角度
+                        zoom: 17.0, // カメラのズームレベル
                       ),
                     ));
+                    mapController.addMarker(MarkerOptions(
+                        position: LatLng(51.5160895, -0.1294527),
+                        infoWindowText: InfoWindowText(
+                            'London', '51.5160895, -0.1294527')));
                   },
           ),
         ],
