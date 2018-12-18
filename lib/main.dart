@@ -28,7 +28,7 @@ class MapsDemoState extends State<MapsDemo> {
           Center(
             child: SizedBox(
               width: double.infinity,
-              height: 640,
+              height: 480,
               child: GoogleMap(
                 onMapCreated: _onMapCreated,
               ),
@@ -39,18 +39,23 @@ class MapsDemoState extends State<MapsDemo> {
             onPressed: mapController == null
                 ? null
                 : () {
-                    mapController.animateCamera(CameraUpdate.newCameraPosition(
-                      const CameraPosition(
-                        bearing: 270.0, // 方角
-                        target: LatLng(51.5160895, -0.1294527), // 位置情報
-                        tilt: 3.0, // カメラの角度
-                        zoom: 17.0, // カメラのズームレベル
+                    mapController.animateCamera(
+                      CameraUpdate.newCameraPosition(
+                        const CameraPosition(
+                          bearing: 270.0, // 方角
+                          target: LatLng(51.5160895, -0.1294527), // 位置情報
+                          tilt: 3.0, // カメラの角度
+                          zoom: 17.0, // カメラのズームレベル
+                        ),
                       ),
-                    ));
-                    mapController.addMarker(MarkerOptions(
+                    );
+                    mapController.addMarker(
+                      MarkerOptions(
                         position: LatLng(51.5160895, -0.1294527),
-                        infoWindowText: InfoWindowText(
-                            'London', '51.5160895, -0.1294527')));
+                        infoWindowText:
+                            InfoWindowText('London', '51.5160895, -0.1294527'),
+                      ),
+                    );
                   },
           ),
         ],
